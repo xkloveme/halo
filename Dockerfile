@@ -15,7 +15,7 @@ services:
       retries: 5
       start_period: 30s
     command:
-      - --spring.r2dbc.url=r2dbc:pool:MySQL://${PANEL_DB_HOST}:${HALO_DB_PORT}/${PANEL_DB_NAME}
+      - --spring.r2dbc.url=r2dbc:pool:mysql://${PANEL_DB_HOST}:${HALO_DB_PORT}/${PANEL_DB_NAME}
       - --spring.r2dbc.username=${PANEL_DB_USER}
       - --spring.r2dbc.password=${PANEL_DB_USER_PASSWORD}
       - --spring.sql.init.platform=MySQL
