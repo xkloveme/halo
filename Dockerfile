@@ -7,7 +7,7 @@ services:
     volumes:
       - ./data:/root/.halo2
     ports:
-      - 8090
+      - 8090:8090
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness" ]
       interval: 30s
@@ -15,11 +15,11 @@ services:
       retries: 5
       start_period: 30s
     command:
-      - --spring.r2dbc.url=r2dbc:pool:${HALO_PLATFORM}://${PANEL_DB_HOST}:${HALO_DB_PORT}/${PANEL_DB_NAME}
+      - --spring.r2dbc.url=r2dbc:pool:MySQL://${PANEL_DB_HOST}:${HALO_DB_PORT}/${PANEL_DB_NAME}
       - --spring.r2dbc.username=${PANEL_DB_USER}
       - --spring.r2dbc.password=${PANEL_DB_USER_PASSWORD}
-      - --spring.sql.init.platform=${HALO_PLATFORM}
-      - --halo.external-url=${HALO_EXTERNAL_URL}
+      - --spring.sql.init.platform=MySQL
+      - --halo.external-url=https://blog.jixiaokang.com
       - --halo.security.initializer.superadminusername=${HALO_ADMIN}
       - --halo.security.initializer.superadminpassword=${HALO_ADMIN_PASSWORD}
     labels:
